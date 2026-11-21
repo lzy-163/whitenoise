@@ -52,7 +52,7 @@ jobs:
         name: coverage-data-${{ matrix.python-version }}
         path: '${{ github.workspace }}/.coverage.*'
         include-hidden-files: true
-        if-no-files-found: true
+        if-no-files-found: warn
 
   coverage:
     name: Coverage
@@ -89,3 +89,4 @@ jobs:
         with:
           name: html-report
           path: htmlcov
+          if-no-files-found: warn
