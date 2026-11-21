@@ -43,6 +43,7 @@ jobs:
         python -m pip install --upgrade 'tox>=4.0.0rc3'
 
     - name: Run tox targets for ${{ matrix.python-version }}
+      shell: bash
       run: tox run -f py$(echo ${{ matrix.python-version }} | tr -d .)
 
     - name: Upload coverage data
@@ -52,7 +53,7 @@ jobs:
         name: coverage-data-${{ matrix.python-version }}
         path: '${{ github.workspace }}/.coverage.*'
         include-hidden-files: true
-        if-no-files-found: true
+        if-no-files-found: error
 
   coverage:
     name: Coverage
